@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: credit-card
+  jpa:
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+server:
+  servlet:
+    context-path: /api
+
+api:
+  timeout: 30000
+  identity-verification-service:
+    base-url: http://localhost:8081/api
+
+logging:
+  level:
+    root: ${LOG_LEVEL:WARN}
+  file:
+    name: logs/ms-credit-card.log
+  pattern:
+    file: '%d %-5p [%t] %X{HTTP-REQUEST-UUID} %c{1}: %m%n'
+    console: '%d %-5p [%t] %X{HTTP-REQUEST-UUID} %c{1}: %m%n'
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz # by date
+      max-file-size: 10MB # by size
